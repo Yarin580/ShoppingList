@@ -1,0 +1,46 @@
+import * as actions from './actionsType'
+import * as axios from 'axios'
+
+
+export const getItems = () => dispatch => {
+    dispatch(setItemsLoading());
+
+    axios
+        .get('/api/items')
+        .then(res => 
+            dispatch({
+                type: actions.GET_ITEM,
+                payload: res.data
+            })
+            
+        )
+}
+
+export const addItem = (item) => dispatch => {
+
+    axios.post('/api/items',item).then(res => 
+        dispatch({
+            type:actions.ADD_ITEM,
+            payload: res.data
+        }));
+
+    
+}
+
+export const  deleteItem = (id) => dispatch => {
+    axios.delete(`/api/items/${id}`).then(res => 
+        dispatch({
+            type: actions.DELETE_ITEM,
+            payload: id
+
+        }))
+    
+}
+
+
+
+export function setItemsLoading() {
+    return {
+        type: actions.ITEMS_LOADING
+    }
+}
