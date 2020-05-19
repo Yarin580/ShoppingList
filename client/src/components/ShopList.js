@@ -21,17 +21,10 @@ function ShopList (props) {
             <ListGroup>
                 {items.map(item => (
                     <ListGroupItem key={item._id}>
-                    <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
-                    onClick={() => onDeleteClick(item._id)}
-                    >
-                    x
+                        {item.name}
+                   <Button color="danger" style={{float:"right"}} onClick={() => onDeleteClick(item._id)}>
+                        x
                     </Button>
-
-                    {item.name}
-                    
                     </ListGroupItem>
                 ))}
                
